@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SheCodes Plus Project Week 2</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="src/styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  </head>
+
+  <body>
+    <div class="container">
+        <div class="row">
+            <div class="col-4">
+      <div class="cardstyle">
+      <div class="card mb-3" style="max-width: 540px">
+        <div class="row g-0">
+          <div class="col-md-4">
+            <h1>☀️</h1>
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title" id="city"></h5>
+              <p class="card-text" id="temperature"></p>
+              <p id="description"></p>
+               <p id="hours">  Saturday 9:00am</p>
+               <p id="date">26/5/2022</p>
+              
+              </p>
+              </div>
+              </div>
+            </div> 
+            </div>
+          </div>
+          <nav class="navbar bg-light">
+  <div class="container-fluid">
+    <form class="d-flex" role="search" id="search-form">
+      <input  class="form-control me-2" type="search" placeholder="Select your city" id="search-input">
+      <button class="btn btn-outline-success" type="submit">Search</button>
+      <button class="btn btn-outline-primary" type="submit" id="current-position">Current</button>
+    </form>
+  </div>
+</nav>
+        </div>
+      </div>
+
+      <div class="row">
+  <div class="col-2">
+    <div class="emoji">⛅</div>
+    <h6>Sunday <br />
+    22°</h6>
+  </div>
+ <div class="col-2">
+    <div class="emoji">🌦️</div>
+    <h6>Monday<br />
+    19°</h6>
+  </div>
+  <div class="col-2">
+   <div class="emoji">🌧️</div>
+    <h6>Tuesday<br />
+    18°</h6>
+</div>
+ <div class="col-2">
+   <div class="emoji">🌥️ </div>
+   <h6>Wednesday<br />
+    20°</h6>
+</div>
+<div class="col-2">
+   <div class="emoji">☀️</div>
+    <h6>Thursday<br />
+    22°</h6>
+</div>
+  
+</div>
+    </div>
+
+    <script src="src/index.js">
+      
+    </script>
+  
+  </body>
+</html>

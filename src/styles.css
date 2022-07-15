@@ -38,3 +38,9 @@ h6 {
 #current-position {
   margin-left: 5px;
 }
+
+.link {
+  display: block;
+  margin-top: 40px;
+  margin-left: 450px;
+}

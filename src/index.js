@@ -38,11 +38,18 @@ date.innerHTML = `${month[now.getMonth()]} ${day}, ${year}`;
 let searchInput = document.querySelector("#search-input");
 function displayWeather(response) {
   console.log(response.data);
+  let celsiusTemperature = response.data.main.temp;
   document.querySelector("#temperature").innerHTML =
-    Math.round(response.data.main.temp) + "°C";
+    Math.round(celsiusTemperature);
   document.querySelector("#city").innerHTML = response.data.name;
   document.querySelector("#description").innerHTML =
     response.data.weather[0].main;
+  document
+    .querySelector("#icon")
+    .setAttribute(
+      "src",
+      `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+    );
 }
 function searchCity(city) {
   let apiKey = `423fc825af3a486561521bdd3136568e`;
@@ -69,10 +76,22 @@ function getCurrentLocation(event) {
   navigator.geolocation.getCurrentPosition(currentLocation);
 }
 
+function showFahrenheitTemperature(event) {
+  event.preventDefault();
+  temperatureElement = document.querySelector("#temperature");
+  let fahrenheitTemperature = (celsiusTemperature * 9) / 5 + 32;
+  temperatureElement.innerHTML = Math.round(fahrenheitTemperature);
+}
+
+let celsiusTemperature = null;
+
 let searchForm = document.querySelector("#search-form");
 searchForm.addEventListener("submit", handleSubmit);
 
 let button = document.querySelector("#current-position");
 button.addEventListener("click", getCurrentLocation);
+
+let fahrenheitLink = document.querySelector("#f-link");
+fahrenheitLink.addEventListener("click", showFahrenheitTemperature);
 
 searchCity("Tokyo");

@@ -17,18 +17,20 @@
 
   <body>
     <div class="container">
+      <div class="weather-app">
         <div class="row">
             <div class="col-4">
       <div class="cardstyle">
       <div class="card mb-3" style="max-width: 540px">
         <div class="row g-0">
           <div class="col-md-4">
-            <h1>☀️</h1>
+            <img src="" id="icon"  />
           </div>
           <div class="col-md-8">
             <div class="card-body">
               <h5 class="card-title" id="city"></h5>
-              <p class="card-text" id="temperature"></p>
+              <div>
+              <strong class="card-text" id="temperature"></strong><span class="units">°C|<a href="#" id="f-link">°F</a></span></div>
               <p id="description"></p>
                <p id="hours">  Saturday 9:00am</p>
                <p id="date">26/5/2022</p>
@@ -79,6 +81,7 @@
 
 </div>
   
+</div>
 </div>
     </div>
 

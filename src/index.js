@@ -36,9 +36,10 @@ hours.innerHTML = `${dayOfWeek} ${hour}:${minutes}`;
 date.innerHTML = `${month[now.getMonth()]} ${day}, ${year}`;
 
 let searchInput = document.querySelector("#search-input");
+
 function displayWeather(response) {
   console.log(response.data);
-  let celsiusTemperature = response.data.main.temp;
+  celsiusTemperature = response.data.main.temp;
   document.querySelector("#temperature").innerHTML =
     Math.round(celsiusTemperature);
   document.querySelector("#city").innerHTML = response.data.name;
@@ -79,8 +80,18 @@ function getCurrentLocation(event) {
 function showFahrenheitTemperature(event) {
   event.preventDefault();
   temperatureElement = document.querySelector("#temperature");
+  celsiusLink.classList.remove("active");
+  fahrenheitLink.classList.add("active");
   let fahrenheitTemperature = (celsiusTemperature * 9) / 5 + 32;
   temperatureElement.innerHTML = Math.round(fahrenheitTemperature);
+}
+
+function showCelsiusTemperature(event) {
+  event.preventDefault();
+  celsiusLink.classList.add("active");
+  fahrenheitLink.classList.remove("active");
+  temperatureElement = document.querySelector("#temperature");
+  temperatureElement.innerHTML = Math.round(celsiusTemperature);
 }
 
 let celsiusTemperature = null;
@@ -93,5 +104,8 @@ button.addEventListener("click", getCurrentLocation);
 
 let fahrenheitLink = document.querySelector("#f-link");
 fahrenheitLink.addEventListener("click", showFahrenheitTemperature);
+
+let celsiusLink = document.querySelector("#c-link");
+celsiusLink.addEventListener("click", showCelsiusTemperature);
 
 searchCity("Tokyo");

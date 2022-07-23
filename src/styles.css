@@ -63,3 +63,18 @@ h6 {
   align-items: center;
   flex-direction: column;
 }
+#f-link {
+  text-decoration: none;
+}
+#c-link {
+  text-decoration: none;
+}
+.units .active {
+  text-decoration: none;
+  color: black;
+  cursor: default;
+}
+
+.units .active:hover {
+  text-decoration: none;
+}

@@ -35,6 +35,29 @@ let dayOfWeek = days[now.getDay()];
 hours.innerHTML = `${dayOfWeek} ${hour}:${minutes}`;
 date.innerHTML = `${month[now.getMonth()]} ${day}, ${year}`;
 
+function displayForecast() {
+  let forecastElement = document.querySelector("#forecast");
+
+  let forecastHTML = `<div class="row">`;
+  let days = ["Thu", "Fri", "Sat", "Sun", "Mon"];
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      `
+  <div class="col-2">
+    <img src="http://openweathermap.org/img/wn/04d@2x.png" alt="">
+    <div class="forecast-date">${day}</div>
+    <div class="forecast-temperatures">
+   <span class="forecast-temperature-max"> 22°</span>/<span class="forecast-temperature-min">19°</span>
+  </div>
+  </div>
+  `;
+  });
+
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
+}
+
 let searchInput = document.querySelector("#search-input");
 
 function displayWeather(response) {
@@ -113,3 +136,4 @@ let celsiusLink = document.querySelector("#c-link");
 celsiusLink.addEventListener("click", showCelsiusTemperature);
 
 searchCity("Tokyo");
+displayForecast();

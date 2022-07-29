@@ -35,23 +35,40 @@ let dayOfWeek = days[now.getDay()];
 hours.innerHTML = `${dayOfWeek} ${hour}:${minutes}`;
 date.innerHTML = `${month[now.getMonth()]} ${day}, ${year}`;
 
-function displayForecast() {
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+  return days[day];
+}
+
+function displayForecast(response) {
+  let forecast = response.data.daily;
+
   let forecastElement = document.querySelector("#forecast");
 
   let forecastHTML = `<div class="row">`;
-  let days = ["Thu", "Fri", "Sat", "Sun", "Mon"];
-  days.forEach(function (day) {
-    forecastHTML =
-      forecastHTML +
-      `
+  forecast.forEach(function (forecastDay, index) {
+    if (index < 5) {
+      forecastHTML =
+        forecastHTML +
+        `
   <div class="col-2">
-    <img src="http://openweathermap.org/img/wn/04d@2x.png" alt="">
-    <div class="forecast-date">${day}</div>
+    <img src="http://openweathermap.org/img/wn/${
+      forecastDay.weather[0].icon
+    }@2x.png" alt="">
+    <div class="forecast-date">${formatDay(forecastDay.dt)}</div>
     <div class="forecast-temperatures">
-   <span class="forecast-temperature-max"> 22°</span>/<span class="forecast-temperature-min">19°</span>
+   <span class="forecast-temperature-max"> ${Math.round(
+     forecastDay.temp.max
+   )}°</span>/<span class="forecast-temperature-min">${Math.round(
+          forecastDay.temp.min
+        )}°</span>
   </div>
   </div>
   `;
+    }
   });
 
   forecastHTML = forecastHTML + `</div>`;
@@ -60,8 +77,13 @@ function displayForecast() {
 
 let searchInput = document.querySelector("#search-input");
 
+function getForecast(coordinates) {
+  let apiKey = `423fc825af3a486561521bdd3136568e`;
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(displayForecast);
+}
+
 function displayWeather(response) {
-  console.log(response.data);
   celsiusTemperature = response.data.main.temp;
   document.querySelector("#temperature").innerHTML =
     Math.round(celsiusTemperature);
@@ -78,7 +100,9 @@ function displayWeather(response) {
       "src",
       `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
     );
+  getForecast(response.data.coord);
 }
+
 function searchCity(city) {
   let apiKey = `423fc825af3a486561521bdd3136568e`;
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
@@ -136,4 +160,3 @@ let celsiusLink = document.querySelector("#c-link");
 celsiusLink.addEventListener("click", showCelsiusTemperature);
 
 searchCity("Tokyo");
-displayForecast();

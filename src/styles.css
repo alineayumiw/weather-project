@@ -3,11 +3,17 @@
   margin: 30px auto;
   border: 1px solid #dadde1;
   border-radius: 10px;
+  background-color: #fdfdfd;
+}
+
+#form {
+  border-radius: 10px;
+  width: max-content;
 }
 
 .cardstyle {
   position: relative;
-  left: 550px;
+  left: 500px;
   top: 50px;
 }
 h5 {
@@ -64,8 +70,7 @@ h6 {
 
 .link {
   display: block;
-  margin-top: 40px;
-  margin-left: 450px;
+  text-align: center;
 }
 .card-body {
   display: flex;
